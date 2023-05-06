@@ -28,12 +28,11 @@ sudo chmod 755 /usr/bin/pop_report
 ```
 ### 如果你是Arch或Manjaro等Arch衍生版Linux用户，则除了pop_report以外可以使用AUR安装(假设你使用yay)
 ```
-yay -Sy acpi acpilight alacritty alsa-utils battery blueman bottom bspwm btop cava colorpicker clipmenu dunst eww-bin flameshot google-chrome gotop hsetroot htop imagemagick jq kitty lxappearance mantablockscreen mpv network-manager-applet neovim pa-applet-git picom-ftlabs-git playerctl polkit-gnome polybar pulseaudio python3 ranger rofi scrot sd sox spotify spicetify-cli sxhkd sysstat thunar tumbler udiskie wmctrl wpgtk-git xclip xdotool xprintidle xfce4-power-manager xorg xorg-xinit xorg-xwininfo yesplaymusic --needed
+yay -Sy acpi acpilight alsa-utils battery blueman bottom bspwm btop cava colorpicker clipmenu dunst eww-bin flameshot google-chrome gotop hsetroot htop imagemagick jq kitty lxappearance mantablockscreen mpv network-manager-applet neovim pa-applet-git picom-ftlabs-git playerctl polkit-gnome polybar pulseaudio python3 ranger rofi scrot sd sox spotify spicetify-cli sxhkd sysstat thunar tumbler udiskie wmctrl wpgtk-git xclip xdotool xprintidle xfce4-power-manager xorg xorg-xinit xorg-xwininfo yesplaymusic --needed
 ```
 ### 如果你是其他版本的Linux用户，~~请左转换Arch~~以下是依赖列表，请自己用包管理器或自己编译安装
 - acpi
 - acpilight
-- alacritty
 - alsa-utils
 - battery
 - blueman
@@ -53,6 +52,7 @@ yay -Sy acpi acpilight alacritty alsa-utils battery blueman bottom bspwm btop ca
 - imagemagick
 - jq
 - kitty
+- lm_sensors
 - lxappearance
 - mantablockscreen
 - mpv
@@ -91,7 +91,7 @@ yay -Sy acpi acpilight alacritty alsa-utils battery blueman bottom bspwm btop ca
 ## 安装dots
 - 将这个仓库克隆下来
 ```
-git clone https://github.com/lotrt/dotfiles .dots
+git clone https://github.com/lotrt/dots-2.0-chinese-rewrite .dots
 ```
 - 进入.dots文件夹
 ```
