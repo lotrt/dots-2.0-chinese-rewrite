@@ -1,12 +1,9 @@
 # Bspwm-1920x1080 
 自己由[这个](https://github.com/ikz87)魔改的Bspwm配置文件
 ## 配置效果
-![2023-04-08_04:01:55](https://user-images.githubusercontent.com/127640546/230672188-3a2c4b12-e874-42a1-9bf0-52ad5d8c3a16.png)
-![2023-04-08_04:02:18](https://user-images.githubusercontent.com/127640546/230672196-1a7badeb-407f-4b52-86b8-0eb11410a9e2.png)
-![prtscn_2023-04-01_2](https://user-images.githubusercontent.com/127640546/230672208-75acc693-574f-4717-aafa-520d739ab10e.png)
-![wa](https://user-images.githubusercontent.com/127640546/230672211-eeb3c8b1-9bbd-426b-987b-ceba8981e3e5.png)
-![2023-04-08_04:02:31](https://user-images.githubusercontent.com/127640546/230672198-0a5b6218-5fe4-4f61-82c4-08e57de8ed74.png)
-![2023-04-08_04:02:55](https://user-images.githubusercontent.com/127640546/230672203-a81e51f5-22d7-498f-a596-92c820fe1882.png)
+![2023-05-06_22:53:28](https://user-images.githubusercontent.com/127640546/236631773-1d7e43fb-2187-4e8b-8be4-8d02ce575b67.png)
+https://user-images.githubusercontent.com/127640546/236632066-05578a44-4bea-4fc2-bf06-e7a0a3883cae.mp4
+
 
 
 ## 安装依赖
