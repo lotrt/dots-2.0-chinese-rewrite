@@ -2,6 +2,7 @@
 自己由[这个](https://github.com/ikz87)魔改的Bspwm配置文件
 ## 配置效果
 https://user-images.githubusercontent.com/127640546/236632066-05578a44-4bea-4fc2-bf06-e7a0a3883cae.mp4
+
 ![image](https://user-images.githubusercontent.com/127640546/236632615-ff4910cf-fb79-4ab8-9578-25285b30a982.png)
 
 
