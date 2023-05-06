@@ -2,11 +2,8 @@
 自己由[这个](https://github.com/ikz87)魔改的Bspwm配置文件
 ## 配置效果
 <p align="center">
-8
   <img src="https://user-images.githubusercontent.com/127640546/236631773-1d7e43fb-2187-4e8b-8be4-8d02ce575b67.png" width=49%>
-9
-  <img src="https://user-images.githubusercontent.com/127640546/236632066-05578a44-4bea-4fc2-bf06-e7a0a3883cae.mp4" width=51%>
-10
+  <img src="https://user-images.githubusercontent.com/127640546/236632066-05578a44-4bea-4fc2-bf06-e7a0a3883cae.mp4" width=49%>
 </p>
 
 
