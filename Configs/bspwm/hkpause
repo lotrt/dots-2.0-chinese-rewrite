@@ -1,0 +1,5 @@
+#Paused state for sxhkd
+
+#Undo the pause
+super+Escape
+	killall sxhkd && sxhkd -c ~/.config/bspwm/sxhkdrc& dunstify "开启sxhkd" -i ~/.config/rice_assets/Icons/resume.png -t 1500 --replace=420 -u critical&

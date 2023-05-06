@@ -1,0 +1,18 @@
+* {
+  bg: #0a0c1cff;
+  bg-alt: #161b41;
+
+  fg: #f6f5ff;
+  fg-alt: #6791D9;
+
+  text-color: #f6f5ff;
+
+  borders: #5a8bf1;
+  borders-alt: #71b7ff;
+  background-color: @bg;
+  
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 15;
+}

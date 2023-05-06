@@ -1,0 +1,324 @@
+#fortune随机诗词
+fortune -e tang300 song100|lolcat
+#pokemon-colorscripts --no-title -r
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="agnoster"
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git
+  z
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+env=~/.ssh/agent.env
+
+agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+
+agent_start () {
+    (umask 077; ssh-agent >| "$env")
+    . "$env" >| /dev/null ; }
+
+agent_load_env
+
+# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2=agent not running
+agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+
+if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+    agent_start
+    ssh-add
+elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+    ssh-add
+fi
+
+unset env
+#export PATH="/usr/local/bin:$PATH"
+export RANGER_LOAD_DEFAULT_RC=false
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+alias cs='cowsay'
+alias suod='sudo'
+alias sudp='sudo'
+alias sduo='sudo'
+alias sduo='sudo'
+alias s='neofetch'
+alias n='neofetch'
+alias r='ranger'
+alias cla='clear'
+alias cs='cowsay'
+alias vizsh="vim $HOME/.zshrc"
+alias vibash="vim $HOME/.bashrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ls='ls -aF --color=tty'
+alias ll='ls -lahF --color=tty'
+alias la='ls -lahF --color=tty'
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_MODE='nerdfont-complete'
+##
+POWERLEVEL9K_PROMPT_ON_NEWLINE=flase
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
+POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir joined newline status prompt)
+#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{006}"
+#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{009} %F{008}%# %K{none}%F{009}\uE0B0"
+#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=" %F{006}\ue691%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
+
+# os_icon
+POWERLEVEL9K_OS_ICON_FOREGROUND='008'
+POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='⭐'
+POWERLEVEL9K_OS_ICON_BACKGROUND='009'
+
+# dir
+POWERLEVEL9K_SHORTEN_DELIMITER=''
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=7
+POWERLEVEL9K_SHORTEN_STRATEGY='truncate_to_first_and_last'
+
+# Home Root
+POWERLEVEL9K_DIR_HOME_BACKGROUND='009'
+POWERLEVEL9K_DIR_HOME_FOREGROUND='000'
+
+# Root sub dir
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='009'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='000'
+# user dir
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='009'
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='000'
+
+# ect dir
+POWERLEVEL9K_DIR_ETC_BACKGROUND='009'
+POWERLEVEL9K_DIR_ETC_FOREGROUND='000'
+
+# 禁止编辑
+POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="009"
+POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="red"
+
+# user@hostname
+POWERLEVEL9K_CONTEXT_BACKGROUND='009'
+POWERLEVEL9K_CONTEXT_FOREGROUND='000'
+POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='%B%n@%m'
+POWERLEVEL9K_CONTEXT_TEMPLATE='%B%n@%m'
+
+# RIGHT_PROMP
+# ===========================================================
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time vcs background_jobs_joined battery time_joined)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+    # =========================[ Line #1 ]=========================
+    command_execution_time
+    time                  # current time
+      # duration of the last command
+    vcs
+    background_jobs_joined         # presence of background jobs
+    batter
+    direnv                  # direnv status (https://direnv.net/)
+    asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
+    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    anaconda                # conda environment (https://conda.io/)
+    pyenv                   # python environment (https://github.com/pyenv/pyenv)
+    goenv                   # go environment (https://github.com/syndbg/goenv)
+    nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
+    nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
+    nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
+    node_version          # node.js version
+    go_version            # go version (https://golang.org)
+    rust_version          # rustc version (https://www.rust-lang.org)
+    dotnet_version        # .NET version (https://dotnet.microsoft.com)
+    php_version           # php version (https://www.php.net/)
+    laravel_version       # laravel php framework version (https://laravel.com/)
+    java_version          # java version (https://www.java.com/)
+    package               # name@version from package.json (https://docs.npmjs.com/files/package.json)
+    rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
+    rvm                     # ruby version from rvm (https://rvm.io)
+    fvm                     # flutter version management (https://github.com/leoafarias/fvm)
+    luaenv                  # lua version from luaenv (https://github.com/cehoffman/luaenv)
+    jenv                    # java version from jenv (https://github.com/jenv/jenv)
+    plenv                   # perl version from plenv (https://github.com/tokuhirom/plenv)
+    perlbrew                # perl version from perlbrew (https://github.com/gugod/App-perlbrew)
+    phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
+    scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
+    haskell_stack           # haskell version from stack (https://haskellstack.org/)
+    kubecontext             # current kubernetes context (https://kubernetes.io/)
+    terraform               # terraform workspace (https://www.terraform.io)
+    terraform_version     # terraform version (https://www.terraform.io)
+    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+    aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
+    azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+    gcloud                  # google cloud cli account and project (https://cloud.google.com/)
+    google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
+    toolbox                 # toolbox name (https://github.com/containers/toolbox)
+   #context                 # user@hostname
+    nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
+    ranger                  # ranger shell (https://github.com/ranger/ranger)
+    nnn                     # nnn shell (https://github.com/jarun/nnn)
+    xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
+    vim_shell               # vim shell indicator (:sh)
+    midnight_commander      # midnight commander shell (https://midnight-commander.org/)
+    nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
+    vi_mode               # vi mode (you don't need this if you've enabled prompt_char)
+    vpn_ip                # virtual private network indicator
+    #load                  # CPU load
+    #disk_usage            # disk usage
+    #ram                   # free RAM
+    #swap                  # used swap
+    todo                  # todo items (https://github.com/todotxt/todo.txt-cli)
+    #timewarrior           # timewarrior tracking status (https://timewarrior.net/)
+    #taskwarrior           # taskwarrior task count (https://taskwarrior.org/)
+    #cpu_arch              # CPU architecture
+    example               # example user-defined segment (see prompt_example function below)
+    # =========================[ Line #2 ]=========================
+    newline                 # \n
+    ip                    # ip address and bandwidth usage for a specified network interface
+    public_ip             # public IP address
+    proxy                 # system-wide http/https/ftp proxy
+    battery               # internal battery
+    wifi                  # wifi speed
+  )
+
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
+POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=''
+
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='000'
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='009'
+# change
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='009'
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='000'
+
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND='009'
+POWERLEVEL9K_VCS_CLEAN_FOREGROUND='000'
+
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='009'
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='000'
+
+
+# INDICATOR
+POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="009"
+POWERLEVEL9K_ROOT_INDICATOR_FOREGROUND="008"
+
+POWERLEVEL9K_STATUS_OK_BACKGROUND="009"
+POWERLEVEL9K_STATUS_OK_FOREGROUND="008"
+
+POWERLEVEL9K_STATUS_ERROR_BACKGROUND="009"
+POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
+
+# TIME
+# POWERLEVEL9K_TIME_FORMAT="%D{%Y-%m-%d,%H:%M:%S}"
+POWERLEVEL9K_TIME_ICON=''
+POWERLEVEL9K_TIME_FORMAT="%D{\uf073 %Y年%m月%d日\uf017 %H:%M:%S}"
+POWERLEVEL9K_TIME_BACKGROUND="009"
+POWERLEVEL9K_TIME_FOREGROUND="000"
+
+# battery 电池
+POWERLEVEL9K_BATTERY_LOW_BACKGROUND='009'
+POWERLEVEL9K_BATTERY_LOW_FOREGROUND='001'
+POWERLEVEL9K_BATTERY_CHARGING_BACKGROUND='009'
+POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND='076'
+POWERLEVEL9K_BATTERY_CHARGED_BACKGROUND='009'
+POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND='076'
+POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND='009'
+POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND='006'
+POWERLEVEL9K_BATTERY_LOW_THRESHOLD=15
+POWERLEVEL9K_BATTERY_VERBOSE=false
+POWERLEVEL9K_BATTERY_STAGES=''
+
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='009'
+POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='000'
+
+POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND='009'
+POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='green'

@@ -1,0 +1,257 @@
+# "暂停"sxhkd
+super+Escape
+        killall sxhkd && sxhkd -c ~/.config/bspwm/hkpause& dunstify "关闭sxhkd" -i ~/.config/rice_assets/Icons/stop.png -t 1500 --replace=420 -u critical&
+
+########################应用#########################
+
+# 打开浏览器
+super+w  
+	google-chrome-stable
+
+# 打开终端
+super+Return
+        kitty
+
+# 打开文件管理器
+super+e
+	thunar
+
+# 打开ranger文件管理器
+super+shift+Return
+  kitty -e ranger
+
+# 开关picom(窗口渲染器)
+super+p
+        [[ `pgrep -c picom` -eq 0 ]] && picom || killall picom
+
+# 开关旧picom
+super+shift+p
+        [[ `pgrep -c picom --legacy-backends -b` -eq 0 ]] && picom --legacy-backends -b || killall picom
+
+# 运行应用
+super+d
+	play -v 0.4 ~/.config/rice_assets/Sounds/tile.wav& ~/.bscripts/rofi.sh drun	
+
+# 切换窗口
+super+Tab
+	play -v 0.4 ~/.config/rice_assets/Sounds/tile.wav& ~/.bscripts/rofi.sh window
+
+# 登出窗口
+super+alt+q
+    play -v 0.4 ~/.config/rice_assets/Sounds/tile.wav& ~/.bscripts/rofi.sh outopts
+
+# 运行命令
+super+r
+    play -v 0.4 ~/.config/rice_assets/Sounds/tile.wav& ~/.bscripts/rofi.sh run
+
+###################截图、颜色、锁屏####################
+
+# 截图
+Print  
+	~/.bscripts/ss.sh
+
+# 等3秒后截图
+super+Print
+    sleep 3 && ~/.bscripts/ss.sh
+
+# 选取颜色(在当前显示的东西上)
+control+alt+c
+	echo -n	`colorpicker --short --one-shot` | xclip -selection "clipboard"
+
+# 锁屏
+super+o
+	~/.bscripts/lock.sh
+
+########################工作区##########################
+
+# 关闭窗口
+super+q
+	wmctrl -c `xdotool getwindowfocus` -i 
+
+# 向下一个工作区移动当前选中的窗口
+super+shift+x
+	~/.bscripts/wpm_reports.sh move +1
+
+# 向上一个工作区移动当前选中的窗口
+super+shift+z
+	~/.bscripts/wpm_reports.sh move -1
+
+# 切换到下一个工作区
+super+x
+	~/.bscripts/wpm_reports.sh select +1
+
+# 切换到上一个工作区
+super+z
+	~/.bscripts/wpm_reports.sh select -1
+
+# 切换到第{1，2，3，4，5}个个工作区
+super+{1,2,3,4,5}
+	~/.bscripts/wpm_reports.sh jump {0,1,2,3,4}
+
+# 向第{1，2，3，4，5}个工作区移动当前选中的窗口
+super+{_,shift + }{1,2,3,4,5}
+	bspc {desktop -f,node -d} '^{1,2,3,4,5}'
+
+# 使下一个打开的窗口为当前窗口大小的{10/9，10/8，10/7，10/6，10/5，10/4，10/3，10/2，10/1}
+super+control+{1,2,3,4,5,6,7,8,9}
+        bspc node -o 0.{1,2,3,4,5,6,7,8,9}
+
+#######################显示、媒体########################
+
+# 提高5%音量
+super+control+x
+	~/.bscripts/volume.sh up
+XF86AudioRaiseVolume 
+        ~/.bscripts/volume.sh up
+
+# 降低5%音量
+super+control+z 
+	~/.bscripts/volume.sh down
+XF86AudioLowerVolume 
+        ~/.bscripts/volume.sh down
+
+# 静音
+super+control+m
+	~/.bscripts/volume.sh mute 
+XF86AudioMute
+        ~/.bscripts/volume.sh mute  
+
+# 提高5%亮度
+super+alt+x
+	~/.bscripts/brightness.sh up
+XF86MonBrightnessUp
+	~/.bscripts/brightness.sh up
+
+# 降低5%亮度
+super+alt+z
+	~/.bscripts/brightness.sh down
+XF86MonBrightnessDown
+	~/.bscripts/brightness.sh down
+
+# 提高5%伽玛
+control+alt+x
+    ~/.bscripts/gamma.sh up
+
+# 降低5%伽玛
+control+alt+z
+    ~/.bscripts/gamma.sh down
+
+# 暂停、播放音乐
+Pause
+	playerctl play-pause
+XF86AudioPlay
+	playerctl play-pause
+XF86AudioPause 
+	playerctl play-pause
+
+# 播放下一首音乐
+XF86AudioNext
+	playerctl next
+
+# 播放下一首音乐
+XF86AudioPrev
+	playerctl previous
+
+########################eww#########################
+
+# 关闭、打开ewwbar
+super+shift+e
+	~/.bscripts/toggle_bar.sh auto
+
+# 打开、关闭音乐控制窗口
+super+m 
+	~/.config/eww/mybar/scripts/popup_music
+
+#######################窗口#########################
+
+# 切换当前工作区的窗口模式(单窗口模式或平铺窗口模式)
+super+f
+    bspc desktop focused --layout next
+
+# 切换当前窗口为{堆叠，平铺}模式
+super+s
+	~/.bscripts/toggle_winprops.sh float
+
+# 在当前工作区内移动当前窗口的位置(上，下，左，右)
+super+shift+{k,j,h,l}
+	play -v 0.4 ~/.config/rice_assets/Sounds/tile.wav& ~/.bscripts/bsmove.sh {north,south,west,east}
+
+# 在工作区内切换活跃窗口(上，下，左，右)
+super+{k,j,h,l}
+	~/.bscripts/bselect.sh {north,south,west,east}
+	
+# 扩大当前窗口
+## 向上扩大
+super+alt+k
+	bspc node focused -z top 0 -15
+## 向下扩大
+super+alt+j
+	bspc node focused -z bottom 0 15
+## 向左扩大
+super+alt+h
+	bspc node focused -z left -15 0
+## 向右扩大
+super+alt+l
+	bspc node focused -z right 15 0
+
+# 缩小当前窗口
+## 从下方缩小
+super+alt+shift+k
+	bspc node focused -z bottom 0 -15
+## 从上方缩小
+super+alt+shift+j
+	bspc node focused -z top 0 15
+## 从右方缩小
+super+alt+shift+h
+	bspc node focused -z right -15 0
+## 从左方缩小
+super+alt+shift+l
+	bspc node focused -z left 15 0
+
+# 互换窗口
+super+shift+{semicolon,apostrophe}
+	play -v 0.4 ~/.config/rice_assets/Sounds/tile.wav& bspc node @/ -C {forward,backward}
+
+# 旋转窗口 
+super+shift+{a,s}
+	play -v 0.4 ~/.config/rice_assets/Sounds/tile.wav& bspc node first_ancestor -R {90,270}
+
+# 均衡窗口大小
+super+alt+e
+	play -v 0.4 ~/.config/rice_assets/Sounds/tile.wav& bspc node first_ancestor --balance 
+
+# 全屏
+super+t
+	~/.bscripts/toggle_winprops.sh fullscreen
+
+# 将窗口间隙减小5px
+super+minus
+	bspc config window_gap $(( 5 + `bspc config window_gap` ))
+
+# 将窗口间隙加大5px
+super+equal
+	bspc config window_gap $(( -5 + `bspc config window_gap` ))
+
+# 在{上，下，左，右}方打开下一个窗口
+control+super+{k,j,h,l}
+	bspc node --presel-dir \~{north,south,west,east}
+
+# 循环浏览窗口图层（上方、下方）
+super+a
+	~/.bscripts/toggle_winprops.sh layer
+
+# 显示帮助
+super+slash
+        ~/.bscripts/sxhkd-help
+
+# 剪切板
+super+v
+        CM_LAUNCHER=rofi clipmenu \
+	-p "剪切板" \
+        -no-show-icons \
+        -config $HOME/.config/rofi/clip.rasi
+control+semicolon
+        CM_LAUNCHER=rofi clipmenu \
+	-p "剪切板" \
+        -no-show-icons \
+        -config $HOME/.config/rofi/clip.rasi
